@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <header>
+    <title>Rastreio de Encomendas</title>
+  </header>
+  <body>
+    <form [formGroup]="this.form" (ngSubmit)="submit()">
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Informe o código:"
+          type="text"
+          formControlName="codigo"
+          required
+        />
+        <mat-error *ngIf="this.form.invalid">{{ message }}</mat-error>
+      </mat-form-field>
+    </form>
+
+    <mat-list *ngIf="this.response != null" role="list">
+      <mat-list-item role="listitem" *ngFor="let item of response">
+        Data: {{ item.data | date: "medium" }} | Ocorrencia:
+        {{ item.ocorrencia }}
+        <mat-divider></mat-divider>
+      </mat-list-item>
+    </mat-list>
+    <mat-error *ngIf="messageError">{{ messageError }}</mat-error>
+  </body>
+</html>
